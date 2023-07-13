@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Created-By: IntelliJ IDEA
+Built-By: shogi
+Build-Jdk: Oracle OpenJDK version 17.0.6
+Implementation-Version: 5.7.1.RELEASE
+Implementation-Vendor-Id: com.example.session
+

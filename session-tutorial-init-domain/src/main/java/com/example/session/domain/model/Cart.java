@@ -14,7 +14,7 @@
  * governing permissions and limitations under the License.
  */
 package com.example.session.domain.model;
- 
+
 import java.io.Serializable;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -23,9 +23,14 @@ import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
- 
+
+import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
+import org.springframework.stereotype.Component;
 import org.springframework.util.SerializationUtils;
- 
+
+@Component // component-scanの対象となるように@Componentアノテーションを指定する
+@Scope(value = "session", proxyMode = ScopedProxyMode.TARGET_CLASS) // Beanのスコープをsessionにする。また、 proxyMode 属性でScopedProxyMode.TARGET_CLASSを指定し、scoped-proxyを有効にする。
 public class Cart implements Serializable {
 	/**
 	 * 
