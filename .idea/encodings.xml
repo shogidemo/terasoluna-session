@@ -3,9 +3,16 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/session-tutorial-init-domain/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/session-tutorial-init-domain/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/session-tutorial-init-env/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/session-tutorial-init-env/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/session-tutorial-init-initdb/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/session-tutorial-init-initdb/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/session-tutorial-init-selenium/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/session-tutorial-init-selenium/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/session-tutorial-init-web/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/session-tutorial-init-web/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
     <file url="PROJECT" charset="UTF-8" />
   </component>
 </project>
