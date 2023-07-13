@@ -3,6 +3,7 @@ package com.example.session.app.goods;
 import javax.inject.Inject;
 
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,16 +33,51 @@ public class GoodsController {
 	@Inject
 	Cart cart;
 
+	// セッションスコープのBeanをDIコンテナから取得する。
+	@Inject
+	GoodsSearchCriteria criteria;
+
 	@ModelAttribute(value = "goodViewForm")
 	public GoodViewForm setUpCategoryId() {
 		return new GoodViewForm();
 	}
 
+	// 通常の商品一覧画面表示処理の前処理を行う。
+	// セッションに格納されている商品カテゴリをフォームに、ページ番号をpageableに設定する。
+	// 商品カテゴリをフォームに設定するのは、セレクトボックスで表示される商品カテゴリを指定するためである。
 	@GetMapping
-	String showGoods(GoodViewForm form, Pageable pageable, Model model) {
+	public String showGoods(GoodViewForm form, Model model) {
+		Pageable pageable = PageRequest.of(criteria.getPage(), 3);
+		form.setCategoryId(criteria.getCategoryId());
+		return showGoods(pageable, model);
+	}
 
-		Page<Goods> page = goodsService.findByCategoryId(form.getCategoryId(),
-				pageable);
+	// カテゴリが変更された時の商品一覧画面表示処理の前処理を行う。
+	// 入力された商品カテゴリをセッションに格納する。
+	// ページ番号はデフォルトの1ページ目をpageableに指定する。
+	@GetMapping(params = "categoryId")
+	public String changeCategoryId(GoodViewForm form, Pageable pageable, Model model) {
+		criteria.setPage(pageable.getPageNumber());
+		criteria.setCategoryId(form.getCategoryId());
+		return showGoods(pageable, model);
+	}
+
+	// ページが変更された時の商品一覧画面表示処理の前処理を行う。
+	// 入力されたページ番号をセッションに格納する。
+	// セッションに格納されている商品カテゴリをフォームに設定する。
+	@GetMapping(params = "page")
+	public String changePage(GoodViewForm form, Pageable pageable, Model model) {
+		criteria.setPage(pageable.getPageNumber());
+		form.setCategoryId(criteria.getCategoryId());
+		return showGoods(pageable, model);
+	}
+
+	// 共通部分を扱う。
+	// セッションで管理されている商品カテゴリ、前処理で取得したpageableをもとに商品を検索する。
+	String showGoods(Pageable pageable, Model model) {
+		Page<Goods> page = goodsService.findByCategoryId(
+											criteria.getCategoryId()
+										   ,pageable);
 		model.addAttribute("page", page);
 		return "goods/showGoods";
 	}
