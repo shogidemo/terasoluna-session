@@ -66,9 +66,9 @@ public class AccountCreateController {
 		return "account/createForm";
 	}
 
+	@SuppressWarnings("unused")
 	@PostMapping(params = "confirm")
-	public String confirmCreate(@Validated AccountCreateForm form,
-			BindingResult result) {
+	public String confirmCreate(@Validated AccountCreateForm form, BindingResult result) {
 
 		if (result.hasErrors()) {
 			return showCreateForm();
