@@ -17,7 +17,7 @@
             delete-cookies="JSESSIONID" />
         <sec:access-denied-handler ref="accessDeniedHandler"/>
         <sec:custom-filter ref="userIdMDCPutFilter" after="ANONYMOUS_FILTER"/>
-        <sec:session-management />
+        <sec:session-management invalid-session-url="/loginForm" />
         <sec:intercept-url pattern="/loginForm" access="permitAll" />
         <sec:intercept-url pattern="/account/create" access="permitAll" />
         <sec:intercept-url pattern="/" access="permitAll" />

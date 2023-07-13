@@ -136,4 +136,7 @@
             pointcut="execution(* org.springframework.web.servlet.HandlerExceptionResolver.resolveException(..))" />
     </aop:config>
 
+    <!-- Bean Processor -->
+    <bean class="com.example.session.app.config.EnableSynchronizeOnSessionPostProcessor" />
+
 </beans>
