@@ -26,16 +26,22 @@ import com.example.session.domain.service.goods.GoodsService;
 @RequestMapping("goods")
 public class GoodsController {
 
-	@Inject
-	GoodsService goodsService;
+	final GoodsService goodsService;
 
 	// セッションスコープのBeanをDIコンテナから取得する。
-	@Inject
-	Cart cart;
+	final Cart cart;
 
 	// セッションスコープのBeanをDIコンテナから取得する。
+	final GoodsSearchCriteria criteria;
+
 	@Inject
-	GoodsSearchCriteria criteria;
+	public GoodsController(GoodsService goodsService,
+						   Cart cart,
+						   GoodsSearchCriteria criteria) {
+		this.goodsService = goodsService;
+		this.cart = cart;
+		this.criteria = criteria;
+	}
 
 	@ModelAttribute(value = "goodViewForm")
 	public GoodViewForm setUpCategoryId() {

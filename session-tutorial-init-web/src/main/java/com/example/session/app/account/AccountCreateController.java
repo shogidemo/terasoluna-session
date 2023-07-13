@@ -40,11 +40,16 @@ import com.example.session.domain.service.account.AccountService;
 @SessionAttributes(value = { "accountCreateForm" })
 public class AccountCreateController {
 
-	@Inject
-	AccountService accountService;
+	final AccountService accountService;
+
+	final Mapper beanMapper;
 
 	@Inject
-	Mapper beanMapper;
+	public AccountCreateController(AccountService accountService,
+								   Mapper beanMapper) {
+		this.accountService = accountService;
+		this.beanMapper = beanMapper;
+	}
 
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
